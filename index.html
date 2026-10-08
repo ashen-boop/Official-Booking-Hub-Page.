@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Hub · The Artistic Unity</title>
+    <style>
+        /* ----- GLOBAL RESET & BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #f8f9fa;
+            color: #1e1e2f;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ----- NAVIGATION ----- */
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #e9ecef;
+            background-color: #f8f9fa;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-family: 'Georgia', serif;
+            font-size: 1.6rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #1e1e2f;
+        }
+
+        .logo span {
+            font-weight: 500;
+            color: #2b2b3f;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links li {
+            display: inline-block;
+        }
+
+        .nav-links a {
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 450;
+            color: #1e1e2f;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+            text-decoration: none;
+            transition: 0.15s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            border-bottom-color: #1e1e2f;
+            color: #000;
+        }
+
+        /* ----- LEGAL BUTTON (right corner) ----- */
+        .legal-btn {
+            background: transparent;
+            border: 1px solid #1e1e2f;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 450;
+            color: #1e1e2f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.5px;
+            margin-left: 1rem;
+        }
+
+        .legal-btn:hover {
+            background: #1e1e2f;
+            color: white;
+            box-shadow: 0 4px 12px rgba(30, 30, 47, 0.15);
+        }
+
+        .legal-btn:active {
+            transform: scale(0.94);
+        }
+
+        /* ----- CONTAINER (CARD) ----- */
+        .container {
+            max-width: 800px;
+            margin: 2.5rem auto;
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid #f0f0f0;
+        }
+
+        /* ----- ABOUT SECTION ----- */
+        .about-section {
+            max-width: 800px;
+            margin: 0 auto 3rem auto;
+            padding: 2rem 2.5rem;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #f0f0f0;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            scroll-margin-top: 100px;
+        }
+
+        .about-section h2 {
+            font-weight: 400;
+            font-size: 1.8rem;
+            font-family: 'Georgia', serif;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+
+        .about-section p {
+            color: #2b3a4a;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* ----- HERO STYLES ----- */
+        h1 {
+            font-weight: 300;
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            color: #1e1e2f;
+            font-family: 'Georgia', serif;
+            margin: 0 0 0.2rem 0;
+        }
+
+        .subhead {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #6c757d;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-tag {
+            background: #f1f3f5;
+            padding: 0.5rem 1.2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #1e1e2f;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #1e1e2f;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: italic;
+            color: #1e1e2f;
+            line-height: 1.7;
+        }
+
+        h2 {
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.5rem;
+        }
+
+        /* ----- FEATURE GRID (2x2) ----- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 0.8rem 1rem;
+            border-radius: 12px;
+            border: 1px solid #f0f0f0;
+        }
+
+        /* ----- EXPLANATION BUTTON (colors via CSS variables) ----- */
+        .explanation-btn {
+            --explain-bg: #0d1b4c;
+            --explain-bg-hover: #1a2a6c;
+            --explain-bg-active: #060f2e;
+            --explain-text: #ffffff;
+            --explain-border: #0d1b4c;
+
+            display: block;
+            margin: 1.5rem auto 0 auto;
+            background: var(--explain-bg);
+            color: var(--explain-text);
+            border: 1px solid var(--explain-border);
+            border-radius: 60px;
+            padding: 0.8rem 2.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 450;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .explanation-btn:hover {
+            background: var(--explain-bg-hover);
+            border-color: var(--explain-bg-hover);
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(13, 27, 76, 0.3);
+        }
+
+        .explanation-btn:active {
+            background: var(--explain-bg-active);
+            border-color: var(--explain-bg-active);
+            transform: scale(0.96);
+            box-shadow: 0 2px 6px rgba(13, 27, 76, 0.2);
+        }
+
+        /* ----- ABOUT GRID (2x2) ----- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-card {
+            background: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .about-card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #1e1e2f;
+        }
+
+        .about-card p {
+            font-size: 0.95rem;
+            color: #3d4a5a;
+            margin: 0;
+        }
+
+        /* ----- BUTTONS ----- */
+        .btn-primary {
+            display: inline-block;
+            background: #dc3545;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 2.5rem;
+            border-radius: 60px;
+            font-weight: 450;
+            font-size: 1rem;
+            border: 1px solid #dc3545;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #2b2b3f;
+            border-color: #2b2b3f;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(30, 30, 47, 0.25);
+        }
+
+        .btn-primary:active {
+            background: #0f0f1a;
+            border-color: #0f0f1a;
+            transform: scale(0.96);
+            box-shadow: 0 2px 6px rgba(30, 30, 47, 0.15);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #1e1e2f;
+            text-decoration: none;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 450;
+            font-size: 1rem;
+            border: 1px solid #1e1e2f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #1e1e2f;
+            color: white;
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(30, 30, 47, 0.15);
+        }
+
+        .btn-secondary:active {
+            background: #0f0f1a;
+            border-color: #0f0f1a;
+            color: white;
+            transform: scale(0.96);
+            box-shadow: 0 2px 6px rgba(30, 30, 47, 0.1);
+        }
+
+        /* ----- CONTACT / FOOTER ----- */
+        .contact-section {
+            max-width: 800px;
+            margin: 2.5rem auto;
+            padding: 2rem 2.5rem;
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #f0f0f0;
+            text-align: center;
+            scroll-margin-top: 100px;
+        }
+
+        .contact-section h2 {
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        .contact-section p {
+            color: #3d4a5a;
+            font-size: 1rem;
+        }
+
+        .footer-note {
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.85rem;
+            border-top: 1px solid #e9ecef;
+            padding-top: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.2rem;
+        }
+
+        .btn-group .btn-primary {
+            margin-top: 0;
+        }
+
+        /* ===== SERVICES CARDS ===== */
+        .services-scroll-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.5rem 0 1.5rem 0;
+            margin: 1.5rem -0.5rem 0 -0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #1e1e2f #e9ecef;
+        }
+
+        .services-scroll-wrapper::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .services-scroll-wrapper::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 10px;
+        }
+
+        .services-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: #1e1e2f;
+            border-radius: 10px;
+        }
+
+        .services-scroll {
+            display: flex;
+            gap: 1.2rem;
+            padding: 0 0.5rem;
+            min-width: max-content;
+        }
+
+        /* ===== SERVICE CARD (now an <a> link) ===== */
+        .service-card {
+            display: block;
+            background: #f8f9fa;
+            padding: 1.2rem 1.5rem;
+            border-radius: 16px;
+            border: 1px solid #f0f0f0;
+            min-width: 220px;
+            max-width: 280px;
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .service-card:hover {
+            background: #f1f3f5;
+            border-color: #1e1e2f;
+          
+            box-shadow: 0 6px 16px rgba(30, 30, 47, 0.1);
+        }
+
+        .service-card:active {
+            transform: scale(0.97);
+        }
+
+        .service-card h3 {
+            font-weight: 500;
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+            color: #1e1e2f;
+        }
+
+        .service-card p {
+            color: #3d4a5a;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Short note under the title */
+        .service-card .card-note {
+            display: block;
+            margin-top: 0.6rem;
+            font-size: 0.85rem;
+            color: #5a6a7a;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        
+ /* URL holder → cute button */
+    .service-card .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.9rem;
+      padding: 0.45rem 1.1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #050000;
+      background: #fcfcfc;
+      border: 1px solid #ed0307;
+      border-radius: 60px;
+      word-break: break-all;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 8px rgba(30, 30, 47, 0.15);
+    }
+
+    .service-card:hover .card-link {
+      background: #edf103;
+      border-color: #f7f1bd;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgb(255, 255, 255);
+    }
+    
+
+
+        /* ===== TOAST MESSAGE — centered ===== */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.85);
+            background: #1e1e2f;
+            color: #ffffff;
+            padding: 1.4rem 2.8rem;
+            border-radius: 60px;
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            box-shadow: 0 20px 60px rgba(30, 30, 47, 0.45);
+            z-index: 1200;
+            opacity: 0;
+            pointer-events: none;
+            transition: transform 0.35s ease, opacity 0.35s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            max-width: calc(100% - 2rem);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .toast.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Desktop: grid layout */
+        @media (min-width: 701px) {
+            .services-scroll-wrapper {
+                overflow-x: visible;
+                padding: 0;
+                margin: 0;
+            }
+            .services-scroll-wrapper .services-scroll {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                padding: 0;
+                min-width: unset;
+            }
+            .services-scroll-wrapper .service-card {
+                min-width: unset;
+                max-width: unset;
+                flex-shrink: unset;
+            }
+        }
+
+        /* Mobile: horizontal scroll */
+        @media (max-width: 700px) {
+            .services-scroll-wrapper {
+                overflow-x: auto;
+                padding: 0.5rem 0 1.5rem 0;
+                margin: 1.5rem -0.5rem 0 -0.5rem;
+            }
+            .services-scroll-wrapper .services-scroll {
+                display: flex;
+                gap: 1.2rem;
+                padding: 0 0.5rem;
+                min-width: max-content;
+            }
+            .services-scroll-wrapper .service-card {
+                min-width: 200px;
+                max-width: 280px;
+                flex-shrink: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-card {
+                min-width: 170px !important;
+                padding: 1rem 1.2rem;
+            }
+            .toast {
+                font-size: 0.95rem;
+                padding: 1rem 1.8rem;
+            }
+        }
+
+        /* ===== POPUP MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding: 1.5rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            max-width: 520px;
+            width: 100%;
+            padding: 2.5rem 2.5rem 2rem 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+            position: relative;
+            animation: modalFadeIn 0.25s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.92) translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .modal-box h3 {
+            font-family: 'Georgia', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: #1e1e2f;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-box .modal-subtitle {
+            color: #6c757d;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .modal-box .modal-description {
+            color: #2b3a4a;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        .modal-box .modal-features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem 0;
+        }
+
+        .modal-box .modal-features li {
+            padding: 0.4rem 0;
+            color: #3d4a5a;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .modal-box .modal-features li:last-child {
+            border-bottom: none;
+        }
+
+        .modal-box .modal-features li::before {
+            content: "✦";
+            color: #1e1e2f;
+            font-size: 1rem;
+        }
+
+        .modal-close-btn {
+            background: #1e1e2f;
+            color: white;
+            border: none;
+            padding: 0.7rem 2.5rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            font-weight: 450;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+
+        .modal-close-btn:hover {
+            background: #2b2b3f;
+            transform: scale(1.01);
+        }
+
+        .modal-close-btn:active {
+            transform: scale(0.97);
+        }
+
+        /* ===== LEGAL POPUP - HORIZONTAL SCROLLER ===== */
+        .legal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(6px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1.5rem;
+        }
+
+        .legal-overlay.active {
+            display: flex;
+        }
+
+        .legal-popup {
+            background: white;
+            max-width: 720px;
+            width: 100%;
+            padding: 2.5rem 2rem 2rem 2rem;
+            border-radius: 32px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.25);
+            animation: modalFadeIn 0.3s ease-out;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .legal-popup h2 {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            font-size: 2.2rem;
+            margin-top: 0;
+            border-bottom: 1px solid #e9ecef;
+            padding-bottom: 0.75rem;
+        }
+
+        /* Horizontal scroller for legal tabs */
+        .legal-tabs-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 0.5rem 0 0.8rem 0;
+            margin: 1rem -0.5rem 0 -0.5rem;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #1e1e2f #e9ecef;
+        }
+
+        .legal-tabs-wrapper::-webkit-scrollbar {
+            height: 4px;
+        }
+
+        .legal-tabs-wrapper::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 10px;
+        }
+
+        .legal-tabs-wrapper::-webkit-scrollbar-thumb {
+            background: #1e1e2f;
+            border-radius: 10px;
+        }
+
+        .legal-tabs-scroll {
+            display: flex;
+            gap: 0.8rem;
+            padding: 0 0.5rem;
+            min-width: max-content;
+        }
+
+        .legal-tab {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 40px;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 450;
+            color: #1e1e2f;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .legal-tab:hover {
+            background: #f1f3f5;
+            border-color: #1e1e2f;
+            transform: translateY(-1px);
+        }
+
+        .legal-tab.active {
+            background: #1e1e2f;
+            color: white;
+            border-color: #1e1e2f;
+        }
+
+        .legal-tab:active {
+            transform: scale(0.96);
+        }
+
+        /* Document display area */
+        .legal-document-container {
+            margin-top: 1.2rem;
+            background: #f8f9fa;
+            border-radius: 16px;
+            border: 1px solid #f0f0f0;
+            padding: 1.5rem 1.8rem;
+            min-height: 200px;
+            max-height: 400px;
+            overflow-y: auto;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #2b3a4a;
+            white-space: pre-line;
+        }
+
+        .legal-document-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .legal-document-container::-webkit-scrollbar-track {
+            background: #e9ecef;
+            border-radius: 10px;
+        }
+
+        .legal-document-container::-webkit-scrollbar-thumb {
+            background: #1e1e2f;
+            border-radius: 10px;
+        }
+
+        .legal-document-container .doc-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #1e1e2f;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .legal-close-btn {
+            background: #1e1e2f;
+            color: white;
+            border: none;
+            padding: 0.7rem 2.5rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            font-weight: 450;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 1.2rem;
+        }
+
+        .legal-close-btn:hover {
+            background: #2b2b3f;
+        }
+
+        /* ----- RESPONSIVENESS ----- */
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+                padding: 1.2rem 1.5rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .legal-btn {
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+            .container {
+                padding: 1.8rem 1.2rem;
+                margin: 1.5rem 1rem;
+            }
+            .about-section {
+                padding: 1.8rem 1.2rem;
+                margin: 1.5rem 1rem;
+            }
+            .contact-section {
+                padding: 1.8rem 1.2rem;
+                margin: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            .highlight-box {
+                padding: 1rem;
+            }
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .feature-item {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+            .about-card {
+                padding: 0.8rem 1rem;
+            }
+            .about-card h3 {
+                font-size: 0.95rem;
+            }
+            .about-card p {
+                font-size: 0.85rem;
+            }
+
+            .modal-box {
+                padding: 1.8rem 1.5rem;
+                margin: 1rem;
+            }
+            .modal-box h3 {
+                font-size: 1.6rem;
+            }
+            .modal-box .modal-description {
+                font-size: 0.95rem;
+            }
+
+            .legal-popup {
+                padding: 1.8rem 1.2rem;
+            }
+            .legal-tab {
+                font-size: 0.8rem;
+                padding: 0.5rem 1.2rem;
+            }
+            .legal-document-container {
+                padding: 1rem 1.2rem;
+                font-size: 0.9rem;
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.3rem;
+            }
+            .nav-links {
+                gap: 0.8rem;
+            }
+            .nav-links a {
+                font-size: 0.85rem;
+            }
+            .container {
+                padding: 1.2rem;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .feature-item {
+                font-size: 0.8rem;
+                padding: 0.5rem 0.7rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .about-card {
+                padding: 0.7rem 0.8rem;
+            }
+            .about-card h3 {
+                font-size: 0.85rem;
+            }
+            .about-card p {
+                font-size: 0.8rem;
+            }
+            .modal-box {
+                padding: 1.5rem 1.2rem;
+            }
+            .modal-box h3 {
+                font-size: 1.3rem;
+            }
+            .modal-icon {
+                font-size: 2.2rem;
+            }
+            .legal-popup {
+                padding: 1.2rem 0.8rem;
+            }
+            .legal-tab {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+            }
+            .legal-document-container {
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+                max-height: 250px;
+            }
+        }
+
+        /* ===== GLOW EFFECT FOR PRIMARY BUTTON ===== */
+        .btn-glow {
+            --glow-color: 220, 53, 69;
+            --glow-strength: 1;
+            --glow-speed: 1s;
+            --glow-spread: 12px;
+            --glow-blur: 5px;
+
+            position: relative;
+            z-index: 1;
+            animation: btnGlowPulse var(--glow-speed) ease-in-out infinite;
+            transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        @keyframes btnGlowPulse {
+            0%, 100% {
+                box-shadow:
+                    0 0 calc(var(--glow-spread) * 0.5 * var(--glow-strength))
+                        calc(var(--glow-blur) * 0.2 * var(--glow-strength))
+                        rgba(var(--glow-color), calc(0.35 * var(--glow-strength))),
+                    0 0 calc(var(--glow-spread) * 1 * var(--glow-strength))
+                        calc(var(--glow-blur) * 0.4 * var(--glow-strength))
+                        rgba(var(--glow-color), calc(0.15 * var(--glow-strength)));
+            }
+            50% {
+                box-shadow:
+                    0 0 calc(var(--glow-spread) * 1.2 * var(--glow-strength))
+                        calc(var(--glow-blur) * 0.6 * var(--glow-strength))
+                        rgba(var(--glow-color), calc(0.75 * var(--glow-strength))),
+                    0 0 calc(var(--glow-spread) * 2.2 * var(--glow-strength))
+                        calc(var(--glow-blur) * 1.4 * var(--glow-strength))
+                        rgba(var(--glow-color), calc(0.35 * var(--glow-strength)));
+            }
+        }
+
+        .btn-glow:hover {
+            box-shadow:
+                0 0 calc(var(--glow-spread) * 1.4 * var(--glow-strength))
+                    calc(var(--glow-blur) * 0.8 * var(--glow-strength))
+                    rgba(var(--glow-color), calc(0.85 * var(--glow-strength))),
+                0 0 calc(var(--glow-spread) * 2.6 * var(--glow-strength))
+                    calc(var(--glow-blur) * 1.6 * var(--glow-strength))
+                    rgba(var(--glow-color), calc(0.45 * var(--glow-strength)));
+            animation-play-state: paused;
+        }
+
+        .btn-glow:active {
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="navbar">
+    <div class="logo">Booking <span>Hub</span></div>
+    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="legal-btn" id="legalBtn">⚖️ Legal</button>
+    </div>
+</nav>
+
+<!-- ===== HOME / HERO ===== -->
+<div class="container" id="home">
+    <div class="subhead">The Artistic Unity</div>
+    <h1>Booking Hub</h1>
+
+    <!-- THE HOOK -->
+    <div class="highlight-box">
+        <p style="margin: 0; font-size: 1.05rem;">
+            “Your clients are not supposed to call, text, or email you, just to book an appointment.<br>
+            They want to book <strong>instantly</strong> — 24/7, from anywhere.<br>
+            That is what makes you premium<br><br>
+            <strong style="font-style: normal;">We build the system that makes it happen. Consistent flow of bookings.</strong>
+        </p>
+    </div>
+
+    <div class="price-tag">Starting at $20,000</div>
+
+    <!-- WHAT'S INCLUDED -->
+    <h2>What's Included</h2>
+    <div class="feature-grid">
+        <div class="feature-item">✅ Fully functional Custom booking app (web or mobile)</div>
+        <div class="feature-item">✅ Beautiful UI/UX design</div>
+        <div class="feature-item">✅ Automated reminders & confirmations</div>
+        <div class="feature-item">✅ Traffic generation & marketing</div>
+    </div>
+
+
+
+
+
+<p class="plain" style="margin-top:1rem;"><strong>What makes us different:</strong></p>
+<div class="offer-block" style="margin-top:0.6rem;">
+  <p>✓ <strong>24/7 self-booking</strong> — guests reserve anytime, no phone calls.</p>
+  <p>✓ <strong>Zero double-bookings</strong> — real-time availability engine.</p>
+  <p>✓ <strong>Fewer no-shows</strong> — automated SMS &amp; email reminders.</p>
+  <p>✓ <strong>Waitlist auto-fill</strong> — cancelled slots get filled instantly.</p>
+  <p>✓ <strong>Full backend control</strong> — manage staff, tables, rooms, and schedules from one dashboard.</p>
+  <p>✓ <strong>Role-based access</strong> — owners, managers, and staff see only what they need.</p>
+  <p>✓ <strong>Multi-location support</strong> — run every branch from one place.</p>
+  <p>✓ <strong>Live statistics</strong> — peak hours, booking trends, repeat guests, revenue per table.</p>
+  <p>✓ <strong>Exportable reports</strong> — for accountants, investors, or expansion plans.</p>
+  <p class="punch">We deliver revenue, not just software.</p>
+</div>
+    
+
+
+    
+    <!-- ===== EXPLANATION BUTTON ===== -->
+    <button class="explanation-btn" id="explanationBtn">Explanation</button>
+
+    <!-- CLOSING STATEMENT -->
+    <p style="font-size: 1.2rem; font-weight: 300; text-align: center; margin-top: 2rem; color: #1e1e2f; font-family: 'Georgia', serif;">
+        One integrated system. One clear vision. One Booking Hub.
+    </p>
+
+    <div style="text-align: center;">
+        <a href="https://booking-presentation.vercel.app/" class="btn-primary btn-glow">See Website Examples→</a>
+    </div>
+
+    <p style="font-size: 0.85rem; color: #6c757d; text-align: center; margin-top: 1.5rem;">
+        <em>Every project is unique. Final price depends on scope, timeline, and complexity.<br>Contact us for a free consultation and a custom quote.</em>
+    </p>
+</div>
+
+<!-- ===== ABOUT SECTION ===== -->
+<section class="about-section" id="about" style="margin-top: 2.5rem;">
+    <h2>About The Artistic Unity</h2>
+    <p>
+        With deep expertise in web development and design, our team of engineers, designers,
+        and strategists work side-by-side to ensure every module, every data flow,
+        and every integration serves one purpose: <strong>your operational excellence</strong>.
+    </p>
+</section>
+
+<!-- ===== SERVICES SECTION ===== -->
+<div class="container" id="services" style="margin-top: 2.5rem;">
+  <h2 style="margin-top: 0;">Our Core Services</h2>
+  <p style="color: #6c757d; font-size: 0.9rem; margin-bottom: 0.5rem;">Click any card to open its website</p>
+
+  <div class="services-scroll-wrapper">
+    <div class="services-scroll">
+
+      <!-- CARD 1: REVENUE HUB -->
+      <a class="service-card" href="https://revenue-hub-3.vercel.app/" target="_blank" rel="noopener">
+        <h3>📈 Revenue Hub</h3>
+        <p>Everything about revenue generation.</p>
+        <span class="card-note">A complete revenue engine — track, forecast, and grow every income stream in one place.</span>
+        <span class="card-link">Visit Site →</span>
+      </a>
+
+      <!-- CARD 2: BOOKING HUB — triggers toast -->
+      <div class="service-card" id="bookingCard" role="button" tabindex="0" aria-label="Booking Hub - You're here">
+        <h3>📅 Booking Hub</h3>
+        <p>Online booking system.</p>
+        <span class="card-note">Let clients book, reschedule, and pay online — automatically synced to your calendar and backend.</span>
+        <span class="card-link">You're already here!</span>
+      </div>
+
+      <!-- CARD 3: BACKEND SERVICES -->
+      <a class="service-card" href="https://backend-hub-3.vercel.app/" target="_blank" rel="noopener">
+        <h3>⚙️ Backend Services</h3>
+        <p>Everything about resource optimization.</p>
+        <span class="card-note">The engine room — inventory, finance, HR, and payroll working together to eliminate waste.</span>
+        <span class="card-link">Visit Site →</span>
+      </a>
+
+      <!-- CARD 4: THE ARTISTIC UNITY -->
+      <a class="service-card" href="https://www.theartisticunity.art/" target="_blank" rel="noopener">
+        <h3>🎨 The Artistic Unity</h3>
+        <p>The combination of all these services.</p>
+        <span class="card-note">Revenue Hub + Booking Hub + Backend Services — unified into one seamless, scalable ecosystem.</span>
+        <span class="card-link">Visit Site →</span>
+      </a>
+    </div>
+  </div>
+
+  <p style="text-align: center; color: #2b3a4a; font-size: 0.95rem; margin-top: 1rem;">
+    <strong>All modules</strong> are designed to work together — because fragmented systems kill productivity.
+  </p>
+</div>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="contact-section" id="contact">
+    <h2>Let's build your booking system</h2>
+    <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">
+        Ready to replace manual bookings with a seamless automated system? Reach out for a free consultation.
+    </p>
+    <div class="btn-group">
+        <a href="https://copecart.com/us/products/71c85b19/checkout" class="btn-primary" style="margin-top: 0;">Get Started!</a>
+        <a href="mailto:theartisticunity18@gmail.com" class="btn-secondary">theartisticunity18@gmail.com</a>
+    </div>
+    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #6c757d;">
+        📍 The Artistic Unity, No.251/1/1/1 , Galle Road, Panadura, Sri Lanka<br>
+        Available worldwide · Response within 24 hours
+    </p>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer-note">
+    <p>© 2026 The Artistic Unity — Booking Hub. All rights reserved.</p>
+    <p style="margin-top: 0.3rem; letter-spacing: 1px; font-size: 0.75rem;">Built with purpose · Engineered for scale</p>
+</div>
+
+<!-- ===== TOAST MESSAGE (hidden by default — centered) ===== -->
+<div class="toast" id="bookingToast" role="status" aria-live="polite">
+  <span>✨</span>
+  <span>You're already in the Booking Hub</span>
+</div>
+
+<!-- ============================================ -->
+<!-- ===== EXPLANATION MODAL ===== -->
+<!-- ============================================ -->
+<div class="modal-overlay" id="modal-explanation">
+    <div class="modal-box">
+        <div class="modal-icon">💡</div>
+        <h3>How Booking Hub Works</h3>
+        <div class="modal-subtitle">Bookings on autopilot</div>
+
+        <p class="modal-description" style="margin-bottom:1rem;">
+            Most businesses still take bookings by phone, WhatsApp, or email — which means missed calls, double bookings, and staff wasting hours on admin.
+        </p>
+
+        <p class="modal-description" style="margin-bottom:1rem;">
+            <strong>Booking Hub replaces all of that with one system.</strong> Your customers book themselves — 24/7, from any device. Your staff manage everything from a single dashboard. No calls. No conflicts. No chaos.
+        </p>
+
+        <p class="modal-description" style="margin-bottom:1rem; font-weight:500;">
+            What you get:
+        </p>
+
+        <ul class="modal-features">
+            <li><strong>Custom booking page</strong> — guests reserve in seconds, no account needed</li>
+            <li><strong>Real-time availability</strong> — zero double-bookings, ever</li>
+            <li><strong>Automated reminders</strong> — SMS &amp; email cut no-shows up to 40%</li>
+            <li><strong>Full backend control</strong> — manage staff, tables, rooms, and schedules</li>
+            <li><strong>Live statistics</strong> — peak hours, repeat guests, revenue per booking</li>
+            <li><strong>Multi-location support</strong> — run every branch from one place</li>
+            <li><strong>Payments &amp; deposits</strong> — take payment at the time of booking</li>
+            <li><strong>Works on any device</strong> — desktop, tablet, and mobile</li>
+        </ul>
+
+        <p class="modal-description" style="margin-top:1rem; margin-bottom:1.5rem; font-family:'Georgia', serif; font-size:1.1rem; text-align:center;">
+            We deliver revenue, not just software.
+        </p>
+
+        <button class="modal-close-btn" data-close="modal-explanation">Close</button>
+    </div>
+</div>
+
+<!-- ============================================ -->
+<!-- ===== LEGAL POPUP - HORIZONTAL SCROLLER ===== -->
+<!-- ============================================ -->
+<div class="legal-overlay" id="legalOverlay">
+    <div class="legal-popup">
+        <h2>⚖️ Legal</h2>
+        <p style="color: #6c757d; margin-bottom: 0.5rem; font-size: 0.9rem;">Select a document below to read the full statement.</p>
+
+        <!-- Horizontal scroller tabs -->
+        <div class="legal-tabs-wrapper">
+            <div class="legal-tabs-scroll" id="legalTabsScroll">
+                <button class="legal-tab active" data-doc="privacy">🔒 Privacy Policy</button>
+                <button class="legal-tab" data-doc="terms">📄 Terms of Service</button>
+                <button class="legal-tab" data-doc="cookies">🍪 Cookie Policy</button>
+                <button class="legal-tab" data-doc="disclaimer">⚠️ Disclaimer</button>
+            </div>
+        </div>
+
+        <!-- Document display area -->
+        <div class="legal-document-container" id="legalDocumentContainer">
+            <span class="doc-title">Privacy Policy</span>
+            The Artistic Unity (“we”, “our”, “us”) respects your privacy. This policy explains how we collect, use, and protect your personal information when you visit our website or use our services.
+
+            <strong>What we collect:</strong> We may collect your name, email address, phone number, company name, and project details when you fill out a form, contact us, or purchase a service. We also collect anonymised analytics data (via cookies) to improve our website.
+
+            <strong>How we use it:</strong> To respond to inquiries, process orders, send project updates, and improve our services. We never sell your data to third parties. We may share it with trusted partners (e.g., payment processors) strictly for service delivery.
+
+            <strong>Data security:</strong> We use industry-standard encryption and access controls. Your data is stored securely and retained only as long as necessary.
+
+            <strong>Your rights:</strong> You may request access, correction, or deletion of your data at any time by emailing theartisticunity18@gmail.com.
+
+            This policy may be updated periodically. Last revised: March 2026.
+        </div>
+
+        <button class="legal-close-btn" id="legalCloseBtn">Close</button>
+    </div>
+</div>
+
+<!-- ===== POPUP JAVASCRIPT ===== -->
+<script>
+    (function() {
+        // ---- Explanation modal ----
+        const explanationBtn = document.getElementById('explanationBtn');
+        const modals = document.querySelectorAll('.modal-overlay');
+        const closeButtons = document.querySelectorAll('.modal-close-btn');
+
+        function closeAllModals() {
+            modals.forEach(modal => {
+                modal.classList.remove('active');
+            });
+            document.body.style.overflow = '';
+        }
+
+        function openModal(modalId) {
+            closeAllModals();
+            const target = document.getElementById(modalId);
+            if (target) {
+                target.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        if (explanationBtn) {
+            explanationBtn.addEventListener('click', function() {
+                openModal('modal-explanation');
+            });
+        }
+
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const modalId = this.getAttribute('data-close');
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        modals.forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeAllModals();
+                document.body.style.overflow = '';
+                const legalOverlay = document.getElementById('legalOverlay');
+                if (legalOverlay) legalOverlay.classList.remove('active');
+            }
+        });
+
+        // ---- BOOKING HUB TOAST (2.5 seconds) ----
+        const bookingCard = document.getElementById('bookingCard');
+        const bookingToast = document.getElementById('bookingToast');
+        let toastTimer = null;
+
+        function showBookingToast() {
+            if (!bookingToast) return;
+            bookingToast.classList.add('show');
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(function() {
+                bookingToast.classList.remove('show');
+            }, 2500);
+        }
+
+        if (bookingCard) {
+            bookingCard.addEventListener('click', showBookingToast);
+            bookingCard.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    showBookingToast();
+                }
+            });
+        }
+
+        // ---- LEGAL POPUP - HORIZONTAL SCROLLER ----
+        const legalBtn = document.getElementById('legalBtn');
+        const legalOverlay = document.getElementById('legalOverlay');
+        const legalCloseBtn = document.getElementById('legalCloseBtn');
+        const legalTabs = document.querySelectorAll('.legal-tab');
+        const legalContainer = document.getElementById('legalDocumentContainer');
+
+        const docContent = {
+            privacy: `<span class="doc-title">Privacy Policy</span>
+                The Artistic Unity (“we”, “our”, “us”) respects your privacy. This policy explains how we collect, use, and protect your personal information when you visit our website or use our services.
+
+                <strong>What we collect:</strong> We may collect your name, email address, phone number, company name, and project details when you fill out a form, contact us, or purchase a service. We also collect anonymised analytics data (via cookies) to improve our website.
+
+                <strong>How we use it:</strong> To respond to inquiries, process orders, send project updates, and improve our services. We never sell your data to third parties. We may share it with trusted partners (e.g., payment processors) strictly for service delivery.
+
+                <strong>Data security:</strong> We use industry-standard encryption and access controls. Your data is stored securely and retained only as long as necessary.
+
+                <strong>Your rights:</strong> You may request access, correction, or deletion of your data at any time by emailing theartisticunity18@gmail.com.
+
+                This policy may be updated periodically. Last revised: March 2026.`,
+
+            terms: `<span class="doc-title">Terms of Service</span>
+                By using our website or engaging our services, you agree to the following terms:
+
+                <strong>Services:</strong> We provide web development, graphic design, digital marketing, and revenue strategy consulting. All projects are governed by a separate Statement of Work (SOW) that outlines scope, timeline, and fees.
+
+                <strong>Payment:</strong> A 50% deposit is required to begin any project. The remaining balance is due upon completion unless otherwise agreed. Invoices are payable within 14 days.
+
+                <strong>Intellectual property:</strong> Upon full payment, all final deliverables (code, designs, content) become your property. We retain the right to showcase the work in our portfolio unless you request otherwise.
+
+                <strong>Confidentiality:</strong> We treat your business information as confidential and will not disclose it to third parties without your consent.
+
+                <strong>Limitation of liability:</strong> We are not liable for any indirect, incidental, or consequential damages arising from the use of our services or website. Our total liability is limited to the fees paid for the specific project.
+
+                <strong>Governing law:</strong> These terms are governed by the laws of [Your Country/State]. Any disputes shall be resolved through arbitration.
+
+                We reserve the right to update these terms at any time. Continued use constitutes acceptance.`,
+
+            cookies: `<span class="doc-title">Cookie Policy</span>
+                This website uses cookies and similar technologies to enhance your browsing experience, analyze site traffic, and personalize content.
+
+                <strong>What are cookies?</strong> Small text files stored on your device that help us remember your preferences and understand how you interact with our site.
+
+                <strong>Types of cookies we use:</strong>
+                • <strong>Essential cookies:</strong> Necessary for the site to function properly (e.g., session management).
+                • <strong>Analytics cookies:</strong> We use Google Analytics to collect anonymised data about page views, clicks, and traffic sources. This helps us improve our content.
+                • <strong>Marketing cookies:</strong> We may use third-party tools (e.g., Meta Pixel) for targeted advertising, but only if you have given consent via our cookie banner.
+
+                <strong>Your choice:</strong> You can manage or disable cookies in your browser settings. However, disabling essential cookies may affect site functionality.
+
+                We do not use cookies to collect personally identifiable information without your explicit consent. For more details, email theartisticunity18@gmail.com.`,
+
+            disclaimer: `<span class="doc-title">Disclaimer</span>
+                The information provided on this website and through our services is for general informational purposes only. While we strive to keep everything accurate and up to date, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information, products, services, or related graphics contained on the website for any purpose.
+
+                <strong>No professional advice:</strong> The content on this site is not intended to substitute for professional financial, legal, or business advice. Always seek the advice of a qualified professional with any questions you may have regarding your specific situation.
+
+                <strong>Results may vary:</strong> Any case studies, testimonials, or revenue projections are for illustrative purposes only. We cannot guarantee specific outcomes, as results depend on many factors beyond our control (e.g., market conditions, execution, product quality).
+
+                <strong>External links:</strong> Our website may contain links to third-party sites. We are not responsible for the content or privacy practices of those sites.
+
+                <strong>Limitation of liability:</strong> To the fullest extent permitted by law, The Artistic Unity and its team shall not be liable for any loss or damage arising from the use of this website or our services.
+
+                By using this website, you agree to this disclaimer. If you do not agree, please do not use our site.`
+        };
+
+        function setActiveTab(docKey) {
+            legalTabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-doc') === docKey) {
+                    tab.classList.add('active');
+                }
+            });
+        }
+
+        function loadDocument(docKey) {
+            if (docKey && docContent[docKey]) {
+                legalContainer.innerHTML = docContent[docKey];
+                setActiveTab(docKey);
+            }
+        }
+
+        legalTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const docKey = this.getAttribute('data-doc');
+                loadDocument(docKey);
+            });
+        });
+
+        function openLegal() {
+            closeAllModals();
+            legalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            const activeTab = document.querySelector('.legal-tab.active');
+            if (activeTab) {
+                loadDocument(activeTab.getAttribute('data-doc'));
+            } else {
+                loadDocument('privacy');
+            }
+        }
+
+        function closeLegal() {
+            legalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        legalBtn.addEventListener('click', openLegal);
+        legalCloseBtn.addEventListener('click', closeLegal);
+
+        legalOverlay.addEventListener('click', function(e) {
+            if (e.target === this) closeLegal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (legalOverlay.classList.contains('active')) {
+                    closeLegal();
+                }
+            }
+        });
+
+        loadDocument('privacy');
+    })();
+</script>
+
+</body>
+</html>
